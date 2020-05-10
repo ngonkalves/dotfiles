@@ -1,0 +1,1 @@
+alias grep-ngk-etc='sudo grep "ngk" -r /etc/'
