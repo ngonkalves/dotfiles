@@ -1,4 +1,4 @@
-source /usr/share/vim/vimrc                 " Extending from default settings
+"source /usr/share/vim/vimrc                 " Extending from default settings
 
 set mouse=r                                 " Mouse selection doesn't activate the visual mode
 
