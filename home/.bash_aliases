@@ -1,5 +1,7 @@
 # more aliases
-alias vi='which vim 2>/dev/null && vim || vi'
+
+type vim > /dev/null 2>&1 && alias vi='vim'
+
 alias ll='ls -alF --block-size=M'
 alias la='ls -A'
 alias l='ls -CF'
