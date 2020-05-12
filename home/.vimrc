@@ -1,5 +1,7 @@
 "source /usr/share/vim/vimrc                 " Extending from default settings
 
+syntax on                               " Enable syntax highlight
+
 set mouse=r                                 " Mouse selection doesn't activate the visual mode
 
 set tabstop=4                               " The width of a TAB is set to 4.
