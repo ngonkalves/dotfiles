@@ -8,7 +8,7 @@ alias l='ls -CF'
 alias ip='ip -c'
 alias diff='diff --color'
 alias sudo='sudo '
-alias listenports='sudo netstat -ntulp'
+alias netstat-open-ports='sudo netstat -ntulp'
 
 # apt alias
 type apt > /dev/null 2>&1 && alias upg='sudo apt update ; sudo apt upgrade -y ; sudo apt dist-upgrade -y ; sudo apt autoremove -y ; sudo apt autoclean; sudo apt -f install -y'
@@ -21,6 +21,8 @@ alias shutnow='sudo halt -p'
 alias reboot='sudo reboot'
 
 # grep
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias grep='grep --color'
 
 # ssh

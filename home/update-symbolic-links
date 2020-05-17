@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# remove existing symbolic links named .bash_aliases* from home directory
+for FILE_PATH in $(find ~/ -maxdepth 1 -type l -name '.bash_aliases*' 2> /dev/null); do
+	FILE=$(basename $FILE_PATH)
+	# if symbolic link exists, then remove it before
+	if [ -L ~/$FILE ]; then
+		echo "removing symbolic link: ~/$FILE"
+		rm ~/$FILE
+	fi
+done;
+
+CUR_DIR="$( cd "$(dirname "$0" 2>/dev/null)" >/dev/null 2>&1 ; pwd -P )"
+
+cd ~
+
+# if file doesn't exist create new symbolic link
+for FILE_PATH in $(find $CUR_DIR -maxdepth 1 -type f -name '.*' 2> /dev/null); do
+	FILE=$(basename $FILE_PATH)
+	if [ ! -f ~/$FILE ]; then
+		echo "creating symbolic link: ~/$FILE"
+		ln -s $FILE_PATH ~/$FILE
+	fi
+done;
+
+cd - > /dev/null
+
