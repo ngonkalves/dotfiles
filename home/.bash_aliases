@@ -29,6 +29,6 @@ alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
 
 # source all files starting with ".bash_aliases_"
 CUR_DIR="$( cd "$(dirname "$0" 2>/dev/null)" >/dev/null 2>&1 ; pwd -P )"
-for FILE_BASH_ALIASES in $(find "$CUR_DIR" -maxdepth 1 -type f -name '.bash_aliases_*' 2>/dev/null); do
+for FILE_BASH_ALIASES in $(find "$CUR_DIR" -maxdepth 1 -type l -name '.bash_aliases_*' 2>/dev/null); do
     . "$FILE_BASH_ALIASES";
 done;
