@@ -1,5 +1,3 @@
-# vi alias to vim when installed
-type vim > /dev/null 2>&1 && alias vi='vim'
 
 # common alias
 alias ll='ls -alF --block-size=M'
@@ -9,6 +7,12 @@ alias ip='ip -c'
 alias diff='diff --color'
 alias sudo='sudo '
 alias netstat-open-ports='sudo netstat -ntulp'
+
+# vi alias to vim when installed
+type vim > /dev/null 2>&1 && alias vi='vim'
+
+# top
+type htop > /dev/null 2>&1 && alias top='htop'
 
 # apt alias
 type apt > /dev/null 2>&1 && alias upg='sudo apt update ; sudo apt upgrade -y ; sudo apt dist-upgrade -y ; sudo apt autoremove -y ; sudo apt autoclean; sudo apt -f install -y'
@@ -24,6 +28,9 @@ alias reboot='sudo reboot'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color'
+
+# ps
+alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 
 # ssh
 alias ssh-login-passwd='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
