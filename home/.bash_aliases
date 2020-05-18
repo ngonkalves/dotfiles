@@ -1,11 +1,14 @@
 
 # common alias
+alias sudo='sudo '
 alias ll='ls -alF --block-size=M'
 alias la='ls -A'
 alias l='ls -CF'
 alias ip='ip -c'
 alias diff='diff --color'
-alias sudo='sudo '
+alias free='free -ht'
+alias df='df -Tha --total'
+alias du='du -ach | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
 
 # vi alias to vim when installed
@@ -30,7 +33,8 @@ alias fgrep='fgrep --color=auto'
 alias grep='grep --color'
 
 # ps
-alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias ps='ps auxf'
+alias psg='\ps aux | grep -v grep | grep -i -e VSZ -e'
 
 # ssh
 alias ssh-login-passwd='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
