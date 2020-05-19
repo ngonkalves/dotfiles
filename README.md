@@ -1,6 +1,6 @@
 # How to use alias
 
-Include the following line in __.bashrc__ to include __.bash_aliases__ file which will also include all the other files named __.bash_aliases_*__.
+Include the following line in __.bashrc__ to include __.bash_aliases__ file which will also include all the other files named **.bash_aliases_***.
 
 ```sh
 if [ -f ~/.bash_aliases ]; then
