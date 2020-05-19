@@ -11,6 +11,7 @@ alias df='df -Tha --total'
 alias df-dev='df -h | \egrep "^(Filesystem|/dev/)"'
 alias du='du -ach | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
+alias mount-dev='mount | \egrep "^/"'
 
 # vi alias to vim when installed
 type vim > /dev/null 2>&1 && alias vi='vim'
