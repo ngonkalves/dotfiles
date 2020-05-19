@@ -8,6 +8,7 @@ alias ip='ip -c'
 alias diff='diff --color'
 alias free='free -ht'
 alias df='df -Tha --total'
+alias df-dev='df -h | \egrep "^(Filesystem|/dev/)"'
 alias du='du -ach | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
 
