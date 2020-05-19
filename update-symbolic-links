@@ -22,7 +22,7 @@ for FILE_PATH in $(find ~/ -maxdepth 1 -type l -name '.bash_aliases*' 2> /dev/nu
 done;
 
 # remove existing symbolic links which are not named .bash_aliases*
-for FILE_PATH in $(find $SOURCE_DIR -maxdepth 1 -type f -name '.*' 2> /dev/null); do
+for FILE_PATH in $(find $SOURCE_DIR/home -maxdepth 1 -type f -name '.*' 2> /dev/null); do
 	FILE=$(basename $FILE_PATH)
 	# if symbolic link exists, then remove it
 	if [ -L ~/$FILE ]; then
@@ -32,7 +32,7 @@ for FILE_PATH in $(find $SOURCE_DIR -maxdepth 1 -type f -name '.*' 2> /dev/null)
 done;
 
 # if file doesn't exist create new symbolic link
-for FILE_PATH in $(find $SOURCE_DIR -maxdepth 1 -type f -name '.*' 2> /dev/null); do
+for FILE_PATH in $(find $SOURCE_DIR/home -maxdepth 1 -type f -name '.*' 2> /dev/null); do
 	FILE=$(basename $FILE_PATH)
 	if [ ! -f ~/$FILE ]; then
 		echo "${GREEN}creating${RESET} symbolic link: ~/$FILE"
