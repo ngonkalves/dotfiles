@@ -5,6 +5,7 @@
 
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
+BLUE=`tput setaf 4`
 RESET=`tput sgr0`
 
 SOURCE_DIR="$( cd "$(dirname "$0" 2>/dev/null)" >/dev/null 2>&1 ; pwd -P )"
@@ -16,7 +17,7 @@ for FILE_PATH in $(find ~/ -maxdepth 1 -type l -name '.bash_aliases*' 2> /dev/nu
 	FILE=$(basename $FILE_PATH)
 	# if symbolic link exists, then remove it
 	if [ -L ~/$FILE ]; then
-		echo "${RED}removing${RESET} symbolic link: ~/$FILE"
+		echo "${RED}removing${RESET} symbolic link: ${BLUE}~/$FILE${RESET}"
 		rm ~/$FILE
 	fi
 done;
@@ -26,16 +27,18 @@ for FILE_PATH in $(find $SOURCE_DIR/home -maxdepth 1 -type f -name '.*' 2> /dev/
 	FILE=$(basename $FILE_PATH)
 	# if symbolic link exists, then remove it
 	if [ -L ~/$FILE ]; then
-		echo "${RED}removing${RESET} symbolic link: ~/$FILE"
+		echo "${RED}removing${RESET} symbolic link: ${BLUE}~/$FILE${RESET}"
 		rm ~/$FILE
 	fi
 done;
 
-# if file doesn't exist create new symbolic link
 for FILE_PATH in $(find $SOURCE_DIR/home -maxdepth 1 -type f -name '.*' 2> /dev/null); do
 	FILE=$(basename $FILE_PATH)
-	if [ ! -f ~/$FILE ]; then
-		echo "${GREEN}creating${RESET} symbolic link: ~/$FILE"
+	if [ -f ~/$FILE ]; then
+        echo "${RED}file already exists, a symbolic link couldn't be created${RESET}: ${BLUE}~/$FILE${RESET}"
+    else
+        # if file doesn't exist create new symbolic link
+		echo "${GREEN}creating${RESET} symbolic link: ${BLUE}~/$FILE${RESET}"
 		ln -s $FILE_PATH ~/$FILE
 	fi
 done;
