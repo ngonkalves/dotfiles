@@ -12,6 +12,7 @@ alias df-dev='df -h | tee >(head -n 1) >(grep "^/dev") > /dev/null'
 alias du='\du -sh * | sort -h'
 alias du-recursive='\du -ach | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
+alias netstat-open-connections='sudo netstat -natu | \egrep "(Active Internet|Proto |ESTABLISHED|TIME_WAIT)"'
 alias mount-dev='mount | \egrep "^/"'
 
 # vi alias to vim when installed
