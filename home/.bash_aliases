@@ -8,11 +8,11 @@ alias ip='ip -c'
 alias diff='diff --color'
 alias free='free -ht'
 alias df='df -Tha --total'
-alias df-dev='df -h | tee >(head -n 1) >(grep "^/dev") > /dev/null'
+alias df-dev='\df -h | \tee >(\head -n 1) >(\grep "^/dev") > /dev/null'
 alias du='\du -sh * | sort -h'
 alias du-recursive='\du -ach | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
-alias netstat-open-connections='sudo netstat -natu | \egrep "(Active Internet|Proto |ESTABLISHED|TIME_WAIT)"'
+alias netstat-open-connections='sudo \netstat -natu | \tee >(\head -n 2) >(\egrep "(ESTABLISHED|TIME_WAIT)") > /dev/null'
 alias mount-dev='mount | \egrep "^/"'
 
 # vi alias to vim when installed
