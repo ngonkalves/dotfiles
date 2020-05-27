@@ -299,7 +299,7 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-# define tabs for yaml files
+" define tabs for yaml files
 if has("autocmd")
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 endif
