@@ -19,7 +19,7 @@ alias dkcprune='docker container prune -f'
 
 alias dkcppull='docker-compose pull'
 alias dkcpup='docker-compose up -d'
-alias dkcpdown='docker-compose down'
+alias dkcpdown='docker-compose down --remove-orphans'
 alias dkcprestart='docker-compose down;docker-compose up -d'
 alias dkcplog='docker-compose logs'
 alias dkcplogf='docker-compose logs -f'
