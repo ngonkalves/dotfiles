@@ -17,6 +17,7 @@ alias dkc='docker container'
 alias dkcls='docker container ls -a'
 alias dkcprune='docker container prune -f'
 
+alias dkcpbuild='docker-compose build'
 alias dkcppull='docker-compose pull'
 alias dkcpup='docker-compose up -d'
 alias dkcpdown='docker-compose down --remove-orphans'
