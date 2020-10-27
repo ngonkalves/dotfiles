@@ -23,7 +23,7 @@ alias dkcpup='docker-compose up -d'
 alias dkcpupbuild='docker-compose up --build -d'
 alias dkcpdown='docker-compose down --remove-orphans'
 alias dkcprestart='docker-compose down;docker-compose up -d'
-alias dkcprestartrebuild='docker-compose down;docker-compose up --build -d'
+alias dkcprestartbuild='docker-compose down;docker-compose up --build -d'
 alias dkcplog='docker-compose logs'
 alias dkcplogf='docker-compose logs -f'
 
