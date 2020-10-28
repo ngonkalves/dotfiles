@@ -17,6 +17,8 @@ alias dkc='docker container'
 alias dkcls='docker container ls -a'
 alias dkcprune='docker container prune -f'
 
+alias dkcpstart='docker-compose start'
+alias dkcpstop='docker-compose stop'
 alias dkcpbuild='docker-compose build'
 alias dkcppull='docker-compose pull'
 alias dkcpup='docker-compose up -d'
