@@ -150,6 +150,11 @@ dkstate() {
   docker inspect $1 | jq .[0].State
 }
 
+dkcprestartservice() {
+    [ "$#" -eq 1 ] || (echo "please specify container name" && return 1)
+    docker-compose stop $1 && docker-compose start $1
+}
+
 dksb() {
   docker service scale $1=0
   sleep 2
