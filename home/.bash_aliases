@@ -18,6 +18,7 @@ alias mount-dev='mount | \egrep "^/"'
 
 # vi alias to vim when installed
 type vim > /dev/null 2>&1 && alias vi='vim'
+type vim > /dev/null 2>&1 && alias sudovi='sudo -E vi'
 
 # top
 type htop > /dev/null 2>&1 && alias top='htop'
