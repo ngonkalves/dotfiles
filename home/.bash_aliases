@@ -46,6 +46,19 @@ alias psg='\ps aux | grep -v grep | grep -i -e VSZ -e'
 alias ssh-login-passwd='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
 
+# function to backup file
+# Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
+function bckp {
+    if [ -z "$1" ]; then
+        echo "Usage: bckp <path/filen_name>"
+        return 1
+    fi
+    if [ -e "$1" ]; then
+        DATE=`date +"%Y.%m.%d_%H.%M.%S"`
+        \cp $1 "$1.backup.$DATE"
+    fi
+}
+
 # extract any compressed file type (source: https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions)
 function extract {
     if [ -z "$1" ]; then
