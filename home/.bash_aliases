@@ -38,6 +38,9 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color'
 
+# lsof
+alias lsof-listen='sudo lsof -OnP | grep LISTEN'
+
 # ps
 alias ps='ps auxf'
 alias psg='\ps aux | grep -v grep | grep -i -e VSZ -e'
@@ -45,6 +48,10 @@ alias psg='\ps aux | grep -v grep | grep -i -e VSZ -e'
 # ssh
 alias ssh-login-passwd='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
+
+# share files on the fly
+type python > /dev/null 2>&1 && alias http-here-old='hostname -I && python -m SimpleHTTPServer 88'
+type python3 > /dev/null 2>&1 && alias http-here='hostname -I && sudo python3 -m http.server 88'
 
 # function to backup file
 # Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
