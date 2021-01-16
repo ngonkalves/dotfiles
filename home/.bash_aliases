@@ -53,6 +53,12 @@ alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
 type python > /dev/null 2>&1 && alias http-here-old='hostname -I && python -m SimpleHTTPServer 88'
 type python3 > /dev/null 2>&1 && alias http-here='hostname -I && sudo python3 -m http.server 88'
 
+
+# function to pull all git repos in a folder
+function git-pull-all() {
+    for FOLDER in $(find . -maxdepth 1); do if [[ -x $FOLDER/.git ]]; then echo $FOLDER; git -C $FOLDER pull --rebase; fi done;
+}
+
 # function to backup file
 # Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
 function bckp {
