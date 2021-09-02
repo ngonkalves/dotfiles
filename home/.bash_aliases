@@ -15,6 +15,7 @@ alias du-recursive='\du -acxh | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
 alias netstat-open-connections='sudo \netstat -natu | \tee >(\head -n 2) >(\egrep "(ESTABLISHED|TIME_WAIT)") > /dev/null'
 alias mount-dev='mount | \egrep "^/"'
+alias curl-ip='curl https://ifconfig.me/'
 
 # vi alias to vim when installed
 type vim > /dev/null 2>&1 && alias vi='vim'
@@ -61,14 +62,24 @@ function git-pull-all() {
 
 # function to backup file
 # Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
-function bckp {
+function bckup {
     if [ -z "$1" ]; then
-        echo "Usage: bckp <path/filen_name>"
+        echo "Usage: bckup <path/filen_name>"
         return 1
     fi
     if [ -e "$1" ]; then
         DATE=`date +"%Y.%m.%d_%H.%M.%S"`
-        \cp $1 "$1.backup.$DATE"
+        \cp $1 "$1.$DATE.backup"
+    fi
+}
+
+function tarballit {
+    if [ -z "$1" ]; then
+        echo "Usage: tarballit <path/filen_name>"
+        return 1
+    fi
+    if [ -e "$1" ]; then
+        \tar cvzf "$1.tar.gz" "$1"
     fi
 }
 
