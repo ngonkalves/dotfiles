@@ -64,18 +64,24 @@ function git-pull-all() {
 # Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
 function bckup {
     if [ -z "$1" ]; then
-        echo "Usage: bckup <path/filen_name>"
+        echo "Usage: bckup <path/file_of_folder_name>"
         return 1
     fi
     if [ -e "$1" ]; then
         DATE=`date +"%Y.%m.%d_%H.%M.%S"`
-        \cp $1 "$1.$DATE.backup"
+        if [ -d "$1" ]; then 
+            # folder
+            \tar cvzf "$1.$DATE.backup.tar.gz" "$1"
+        elif [ -f "$1"]; then 
+            # file
+            \cp $1 "$1.$DATE.backup"
+        fi
     fi
 }
 
 function tarballit {
     if [ -z "$1" ]; then
-        echo "Usage: tarballit <path/filen_name>"
+        echo "Usage: tarballit <path/file_name>"
         return 1
     fi
     if [ -e "$1" ]; then
