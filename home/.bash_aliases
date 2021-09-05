@@ -71,7 +71,7 @@ function bckup {
         DATE=`date +"%Y.%m.%d_%H.%M.%S"`
         if [ -d "$1" ]; then 
             # folder
-            \tar cvzf "$1.$DATE.backup.tar.gz" "$1"
+            \tar cvzf "${1//\//_}.$DATE.backup.tar.gz" "$1"
         elif [ -f "$1"]; then 
             # file
             \cp $1 "$1.$DATE.backup"
