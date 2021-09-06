@@ -54,6 +54,16 @@ alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
 type python > /dev/null 2>&1 && alias http-here-old='hostname -I && python -m SimpleHTTPServer 88'
 type python3 > /dev/null 2>&1 && alias http-here='hostname -I && sudo python3 -m http.server 88'
 
+# function to convert path to valid filename
+function path_to_filename() {
+    local path=${1%/}
+    while [[ "$path" =~ ^(\.\./|\./|/) ]]; do
+        path="${path#/}"
+        path="${path#./}"
+        path="${path#../}"
+    done;
+    echo ${path//\//.}
+}
 
 # function to pull all git repos in a folder
 function git-pull-all() {
@@ -68,14 +78,14 @@ function bckup {
         return 1
     fi
     if [ -e "$1" ]; then
-        DATE=`date +"%Y.%m.%d_%H.%M.%S"`
+        local DATE=`date +"%Y.%m.%d_%H.%M.%S"`
+        local FILENAME=$(path_to_filename "$1")
         if [ -d "$1" ]; then 
             # folder
-            local FOLDER_PATH_NO_TRAILING_SLASH=${1%/}
-            \tar cvzf "${FOLDER_PATH_NO_TRAILING_SLASH//\//_}.$DATE.backup.tar.gz" "$1"
+            \tar cvzf "${FILENAME}.$DATE.backup.tar.gz" "$1"
         elif [ -f "$1"]; then 
             # file
-            \cp $1 "$1.$DATE.backup"
+            \cp $1 "${FILENAME}.$DATE.backup"
         fi
     fi
 }
