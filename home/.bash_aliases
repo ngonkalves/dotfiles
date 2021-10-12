@@ -54,6 +54,26 @@ alias ssh-login-identity='ssh -o "IdentitiesOnly=yes"'
 type python > /dev/null 2>&1 && alias http-here-old='hostname -I && python -m SimpleHTTPServer 88'
 type python3 > /dev/null 2>&1 && alias http-here='hostname -I && sudo python3 -m http.server 88'
 
+# function to retrieve group id
+function idg() {
+    if [ -z "$1" ]; then
+        echo "Usage: idg <group_name>"
+        return 1
+    fi
+    local group="$1"
+    getent group $group | cut -d: -f3
+}
+
+# function to create an empty sqlite database
+function sqlite-new-database() {
+    if [ -z "$1" ]; then
+        echo "Usage: sqlite-new-database <database_name>"
+        return 1
+    fi
+    local dbname="$1"
+    sqlite "$dbname.db" .databases
+}
+
 # function to convert path to valid filename
 function path_to_filename() {
     local path=${1%/}
@@ -83,7 +103,7 @@ function bckup {
         if [ -d "$1" ]; then 
             # folder
             \tar cvzf "${FILENAME}.$DATE.backup.tar.gz" "$1"
-        elif [ -f "$1"]; then 
+        elif [ -f "$1" ]; then 
             # file
             \cp $1 "${FILENAME}.$DATE.backup"
         fi

@@ -45,6 +45,9 @@ alias dktable='docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage
 
 alias dkps="docker ps --format '{{.ID}} ~ {{.Names}} ~ {{.Status}} ~ {{.Image}}'"
 
+alias dkrun-image='docker run --rm '
+alias dkrun-image-it='docker run --rm -it '
+
 dkln() {
   docker logs -f `docker ps | grep $1 | awk '{print $1}'`
 }
