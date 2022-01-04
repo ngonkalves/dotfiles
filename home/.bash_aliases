@@ -1,6 +1,7 @@
 
 # common alias
 alias sudo='sudo '
+alias sudoenv='sudo -E'
 alias ll='ls -alF --block-size=M'
 alias la='ls -A'
 alias l='ls -CF'
@@ -90,33 +91,49 @@ function git-pull-all() {
     for FOLDER in $(find . -maxdepth 1); do if [[ -x $FOLDER/.git ]]; then echo $FOLDER; git -C $FOLDER pull --rebase; fi done;
 }
 
+function bckup {
+    internal-bckup "" $@
+}
+
+function sudo-bckup {
+    internal-bckup "sudo" $@
+}
+
 # function to backup file
 # Example: file.txt will be copied to file.txt.backup.YYYY.MM.DD_HH.MM.SS
-function bckup {
-    if [ -z "$1" ]; then
+function internal-bckup {
+    if [ -z "$2" ]; then
         echo "Usage: bckup <path/file_of_folder_name>"
         return 1
     fi
-    if [ -e "$1" ]; then
+    if [ -e "$2" ]; then
         local DATE=`date +"%Y.%m.%d_%H.%M.%S"`
-        local FILENAME=$(path_to_filename "$1")
-        if [ -d "$1" ]; then 
+        local FILENAME=$(path_to_filename "$2")
+        if [ -d "$2" ]; then 
             # folder
-            \tar cvzf "${FILENAME}.$DATE.backup.tar.gz" "$1"
-        elif [ -f "$1" ]; then 
+            $1 \tar cvzf "${FILENAME}.$DATE.backup.tar.gz" "$2"
+        elif [ -f "$2" ]; then 
             # file
-            \cp $1 "${FILENAME}.$DATE.backup"
+            $1 \cp $2 "${FILENAME}.$DATE.backup"
         fi
     fi
 }
 
 function tarballit {
-    if [ -z "$1" ]; then
+    internal-tarballit "" $@
+}
+
+function sudo-tarballit {
+    internal-tarballit "sudo" $@
+}
+
+function internal-tarballit {
+    if [ -z "$2" ]; then
         echo "Usage: tarballit <path/file_name>"
         return 1
     fi
-    if [ -e "$1" ]; then
-        \tar cvzf "$1.tar.gz" "$1"
+    if [ -e "$2" ]; then
+        $1 \tar cvzf "$2.tar.gz" "$2"
     fi
 }
 
@@ -160,6 +177,14 @@ function extract {
 # displays the command usage statistics
 function history-stats {
     history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
+}
+
+# generates random private ipv6
+function random-private-ipv6() {
+    ############################################################################################
+    # https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04 #
+    ############################################################################################
+    printf "$(date +%s%N)$(cat /var/lib/dbus/machine-id)" | sha1sum | cut -c 31- | cut -d' ' -f1 | { read mac ; printf "fd${mac:0:2}:${mac:2:4}:${mac:6:4}::/64\n"; }
 }
 
 #####################
