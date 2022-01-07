@@ -2,6 +2,7 @@
 # common alias
 alias sudo='sudo '
 alias sudoenv='sudo -E'
+alias sudoers-user-nopasswd='echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-prompt-$USER-for-sudo-password'
 alias ll='ls -alF --block-size=M'
 alias la='ls -A'
 alias l='ls -CF'
