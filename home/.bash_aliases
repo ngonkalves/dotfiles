@@ -16,12 +16,20 @@ alias du-sort='\du -sxh * | sort -h'
 alias du-recursive='\du -acxh | sort -h'
 alias netstat-open-ports='sudo netstat -ntulp'
 alias netstat-open-connections='sudo \netstat -natu | \tee >(\head -n 2) >(\egrep "(ESTABLISHED|TIME_WAIT)") > /dev/null'
-alias mount-dev='mount | \egrep "^/"'
+alias mount-dev='\mount | \egrep "^/" | \sort -h'
 alias curl-ip='curl https://ifconfig.me/'
+alias random-pass32='date +%s | sha256sum | base64 | head -c 32 ; echo'
+alias random-pass16='date +%s | sha256sum | base64 | head -c 16 ; echo'
+alias random2-pass32='tr -cd "[:alnum:]" < /dev/urandom | fold -w32 | head -n1'
+alias random2-pass16='tr -cd "[:alnum:]" < /dev/urandom | fold -w16 | head -n1'
 
 # vi alias to vim when installed
 type vim > /dev/null 2>&1 && alias vi='vim'
 type vim > /dev/null 2>&1 && alias sudovi='sudo -E vi'
+
+# nvim alias when nvim is installed
+type nvim > /dev/null 2>&1 && alias vi='nvim'
+type nvim > /dev/null 2>&1 && alias sudovi='sudo -E nvim'
 
 # top
 type htop > /dev/null 2>&1 && alias top='htop'
