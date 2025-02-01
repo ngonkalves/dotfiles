@@ -35,9 +35,9 @@ done;
 for FILE_PATH in $(find $SOURCE_DIR/home -maxdepth 1 -type f -name '.*' 2> /dev/null); do
 	FILE=$(basename $FILE_PATH)
 	if [ -f ~/$FILE ]; then
-        echo "${RED}file already exists, a symbolic link couldn't be created${RESET}: ${BLUE}~/$FILE${RESET}"
-    else
-        # if file doesn't exist create new symbolic link
+		echo "${RED}file already exists, a symbolic link couldn't be created${RESET}: ${BLUE}~/$FILE${RESET}"
+	else
+		# if file doesn't exist create new symbolic link
 		echo "${GREEN}creating${RESET} symbolic link: ${BLUE}~/$FILE${RESET}"
 		ln -s $FILE_PATH ~/$FILE
 	fi
